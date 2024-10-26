@@ -32,10 +32,10 @@ jobs:
     - name: Check file size
       run: |
         if [[ $(stat -c '%s' *.*) -gt 2147483648 ]]; then
-        echo "File is smaller than or equal to 2GB"
-        else
         echo "The File is larger than 2GB"
         cd Exit
+        else
+        echo "File is smaller than or equal to 2GB"
         fi
     - name: Set Build Date 
       run: |
