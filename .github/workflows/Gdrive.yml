@@ -28,7 +28,10 @@ jobs:
       run: |
         mkdir Gdrive && cd Gdrive
         gdown https://drive.google.com/uc?id=${{ env.FILE_ID }}
-
+        for filename in $(ls)
+        do
+        echo "FILE_NAME=$filename" >> $GITHUB_ENV
+        done;
     - name: Check file size
       run: |
         if [[ $(stat -c '%s' *.*) -gt 2147483648 ]]; then
@@ -46,6 +49,6 @@ jobs:
       with:
         files: |
           Gdrive/*.*
-        name: your file // ${{ env.BUILD_DATE }}
+        name: ${{ env.FILE_NAME }} // ${{ env.BUILD_DATE }}
         tag_name: ${{ github.run_id }}
         body: |
