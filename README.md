@@ -19,7 +19,7 @@ Your google drive file to direct link (GitHub release)
 
 5) Paste your Google drive file link
 
- (Example: https://drive.google.com/file/d/1g8DVDAzv_qnshNMK7V8WByWJRqi5ekTw/view?usp=sharing)
+(Example: https://drive.google.com/file/d/1g8DVDAzv_qnshNMK7V8WByWJRqi5ekTw/view?usp=sharing)
 
 6) click on "Run workflow"
 
