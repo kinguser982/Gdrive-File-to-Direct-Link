@@ -6,7 +6,7 @@ on:
       FILE_LINK:
         description: 'file link'
         required: true
-        default: 'https://drive.google.com/file/d/1FpKs2CQEM0FOLgBhfobEEDzo-FYX_7_3/view?usp=sharing'
+        default: 'https://drive.google.com/file/d/12E6yVJyD4chGo6wdnAIdHEgok4tE8ZRo/view?usp=sharing'
 
 jobs:
   build:
