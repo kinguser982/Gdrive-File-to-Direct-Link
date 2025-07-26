@@ -30,6 +30,8 @@ jobs:
         mkdir Gdrive && cd Gdrive
         gdown https://drive.google.com/uc?id=${{ env.FILE_ID }}
         7z x *
+        rm *.7z
+        cd *
         ls -la
     - name: Set Build Date 
       run: |
@@ -39,7 +41,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         files: |
-          Gdrive/recovery.img
+          Gdrive/*/recovery.img
         name: ${{ env.FILE_NAME }} // ${{ env.BUILD_DATE }}
         tag_name: ${{ github.run_id }}
         body: |
