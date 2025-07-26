@@ -30,6 +30,7 @@ jobs:
         mkdir Gdrive && cd Gdrive
         gdown https://drive.google.com/uc?id=${{ env.FILE_ID }}
         7z x *
+        ls -la
     - name: Set Build Date 
       run: |
         echo "BUILD_DATE=$(date +%Y%m%d)" >> $GITHUB_ENV
