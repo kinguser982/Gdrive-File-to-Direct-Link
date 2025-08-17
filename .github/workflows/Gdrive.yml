@@ -49,7 +49,7 @@ jobs:
       if: ${{ env.FILE_SIZE == 'true' }}
       run: |
         cd Gdrive
-        mv *.* Part.*
+        mv *.* Archive.*
         rar a -v2000m Part.rar *
         ls -la
         
