@@ -16,10 +16,11 @@ jobs:
       contents: write
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Getting tools ready 
       run: |
+        sudo apt install rar
         pip install gdown 
         python3 convertor.py ${{ github.event.inputs.FILE_LINK }} > link.txt
         echo "FILE_ID=$(<link.txt)" >> $GITHUB_ENV
@@ -32,14 +33,26 @@ jobs:
         do
         echo "FILE_NAME=$filename" >> $GITHUB_ENV
         done;
+        
     - name: Check file size
       run: |
+        cd Gdrive
         if [[ $(stat -c '%s' *.*) -gt 2147483648 ]]; then
         echo "The File is larger than 2GB"
-        cd Exit
+        echo "FILE_SIZE=true" >> $GITHUB_ENV
         else
         echo "File is smaller than or equal to 2GB"
+        echo "FILE_SIZE=false" >> $GITHUB_ENV
         fi
+        
+    - name: Processing Big File
+      if: ${{ env.FILE_SIZE == 'true' }}
+      run: |
+        cd Gdrive
+        mv *.* Part.*
+        rar a -v2000m Part.rar *
+        ls -la
+        
     - name: Set Build Date 
       run: |
         echo "BUILD_DATE=$(date +%Y%m%d)" >> $GITHUB_ENV
