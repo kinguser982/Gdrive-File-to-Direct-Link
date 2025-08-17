@@ -20,7 +20,6 @@ jobs:
 
     - name: Getting tools ready 
       run: |
-        sudo apt install rar
         pip install gdown 
         python3 convertor.py ${{ github.event.inputs.FILE_LINK }} > link.txt
         echo "FILE_ID=$(<link.txt)" >> $GITHUB_ENV
@@ -48,6 +47,7 @@ jobs:
     - name: Processing Big File
       if: ${{ env.FILE_SIZE == 'true' }}
       run: |
+        sudo apt install rar
         cd Gdrive
         mv *.* Archive.*
         rar a -v2000m Part.rar *
@@ -65,3 +65,4 @@ jobs:
         name: ${{ env.FILE_NAME }} // ${{ env.BUILD_DATE }}
         tag_name: ${{ github.run_id }}
         body: |
+        continue-on-error: true
